@@ -10,11 +10,11 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  # Specify a Windows runner
+    runs-on: windows-latest
 
     strategy:
       matrix:
-        java-version: [21]  # Add JDK 21 to the matrix
+        java-version: [21]
 
     steps:
       - uses: actions/checkout@v2
@@ -23,12 +23,12 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: ${{ matrix.java-version }}
-          distribution: 'adopt'  # You might need to change this if 'adopt' doesn't support JDK 21
+          distribution: 'temurin'
 
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
-          path: ~\.m2  # Windows uses a backslash for paths
+          path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
