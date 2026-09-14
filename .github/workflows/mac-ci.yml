@@ -10,11 +10,11 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest  # Specify a macOS runner
+    runs-on: macos-latest
 
     strategy:
       matrix:
-        java-version: [21]  # Define the JDK versions to test
+        java-version: [21]
 
     steps:
       - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
-          path: ~/Library/Caches/Maven  # macOS Maven cache path
+          path: ~/Library/Caches/Maven
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
